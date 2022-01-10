@@ -1,0 +1,40 @@
+###
+GET localhost:8080/source
+
+> {%
+    client.global.set("myText", response.body.toString());
+%}
+
+###
+POST localhost:8080/uppercase
+
+{{myText}}
+
+###
+POST localhost:8080/lowercase
+
+{{myText}}
+
+###
+POST localhost:8080/sink
+
+{{myText}}
+
+###
+GET localhost:8080/sourceFlux
+
+> {%
+    client.global.set("myFlux", response.body.toString());
+%}
+
+###
+POST localhost:8080/uppercaseFlux
+Content-Type: application/json
+
+{{myFlux}}
+
+###
+POST localhost:8080/sinkFlux
+Content-Type: application/json
+
+{{myFlux}}
